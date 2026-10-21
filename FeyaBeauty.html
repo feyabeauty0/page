@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feya Beauty Salon — Dubai, UAE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --fuchsia: #e91e8c;
+  --fuchsia-dark: #c01070;
+  --violet: #7c3aed;
+  --violet-light: #a78bfa;
+  --coral: #ff6b6b;
+  --gold: #f59e0b;
+  --lavender: #f3e8ff;
+  --white: #ffffff;
+  --off-white: #fdf8ff;
+  --ink: #1e1035;
+  --ink-mid: #4a3a6b;
+  --ink-light: #7c6e9e;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--off-white); color: var(--ink); overflow-x: hidden; }
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 0 5%; height: 76px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.5s, box-shadow 0.5s;
+}
+nav.scrolled { background: rgba(253,248,255,0.97); backdrop-filter: blur(16px); box-shadow: 0 2px 30px rgba(124,58,237,0.12); }
+.nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: #fff; letter-spacing: 0.04em; text-decoration: none; transition: color 0.4s; }
+nav.scrolled .nav-logo { color: var(--ink); }
+.nav-logo span { color: var(--fuchsia); font-style: italic; }
+nav.scrolled .nav-logo span { color: var(--fuchsia); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+.nav-links a { font-size: 0.77rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.88); text-decoration: none; transition: color 0.25s; }
+nav.scrolled .nav-links a { color: var(--ink-mid); }
+.nav-links a:hover { color: var(--fuchsia) !important; }
+.nav-cta { background: linear-gradient(135deg, var(--fuchsia), var(--violet)); color: #fff !important; padding: 0.6rem 1.5rem; border-radius: 50px; transition: opacity 0.25s, transform 0.2s !important; box-shadow: 0 4px 18px rgba(233,30,140,0.35); }
+.nav-cta:hover { opacity: 0.88 !important; transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: background 0.4s; }
+nav.scrolled .hamburger span { background: var(--ink); }
+.mobile-menu { display: none; position: fixed; top: 76px; left: 0; right: 0; background: rgba(253,248,255,0.98); backdrop-filter: blur(16px); padding: 2rem 5%; z-index: 199; box-shadow: 0 20px 40px rgba(124,58,237,0.1); }
+.mobile-menu.open { display: flex; flex-direction: column; gap: 1.2rem; }
+.mobile-menu a { font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; padding: 0.6rem 0; border-bottom: 1px solid rgba(124,58,237,0.1); }
+
+/* ── HERO ── */
+#hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1800&q=85&auto=format&fit=crop&crop=top');
+  background-size: cover; background-position: center;
+  transform: scale(1.04);
+  animation: slowZoom 22s ease-in-out infinite alternate;
+}
+@keyframes slowZoom { from { transform: scale(1.04); } to { transform: scale(1.10); } }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: rgba(10, 5, 25, 0.60);
+}
+.hero-wave { position: absolute; bottom: -2px; left: 0; right: 0; z-index: 3; line-height: 0; }
+.hero-wave svg { display: block; width: 100%; height: 80px; }
+
+.hero-inner {
+  position: relative; z-index: 2; width: 100%;
+  max-width: 680px; padding: 140px 6% 120px;
+  display: flex; flex-direction: column; align-items: center;
+  animation: fadeUp 1s ease both;
+}
+
+/* Small eyebrow */
+.hero-eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75); font-weight: 400;
+  margin-bottom: 1.4rem;
+}
+
+/* Headline: two lines */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 5.2rem);
+  font-weight: 300; line-height: 1.1;
+  color: #fff;
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.01em;
+}
+.hero-title .line-italic {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--fuchsia);
+}
+
+/* Description */
+.hero-desc {
+  font-size: 0.97rem; line-height: 1.8; font-weight: 300;
+  color: rgba(255,255,255,0.78);
+  max-width: 420px; margin-bottom: 2.6rem;
+}
+
+/* Two stacked full-width pill buttons */
+.hero-actions {
+  display: flex; flex-direction: column;
+  gap: 1rem; width: 100%; max-width: 340px;
+  align-items: center;
+}
+.btn-hero {
+  width: 100%;
+  background: var(--fuchsia);
+  color: #fff; border: none;
+  padding: 1.05rem 2rem; border-radius: 50px;
+  font-family: var(--font-body); font-size: 0.78rem;
+  letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  box-shadow: 0 8px 28px rgba(233,30,140,0.45);
+}
+.btn-hero:hover { background: var(--fuchsia-dark); transform: translateY(-2px); box-shadow: 0 14px 36px rgba(233,30,140,0.55); }
+
+.btn-hero-ghost {
+  width: 100%;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.7);
+  color: #fff;
+  padding: 1rem 2rem; border-radius: 50px;
+  font-family: var(--font-body); font-size: 0.78rem;
+  letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+  cursor: pointer; text-decoration: none;
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+.btn-hero-ghost:hover { background: rgba(255,255,255,0.12); border-color: #fff; transform: translateY(-2px); }
+.btn-hero-ghost .call-icon { font-size: 0.9rem; }
+
+/* Scroll hint */
+.hero-scroll-hint {
+  position: absolute; bottom: 88px; left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  animation: bounceY 2.8s ease-in-out infinite;
+}
+.hero-scroll-hint span {
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.scroll-arrow {
+  width: 18px; height: 18px;
+  border-right: 1.5px solid rgba(255,255,255,0.4);
+  border-bottom: 1.5px solid rgba(255,255,255,0.4);
+  transform: rotate(45deg);
+}
+@keyframes bounceY { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+/* ── SHARED ── */
+section { padding: 110px 5%; }
+.section-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fuchsia); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
+.section-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--fuchsia); }
+.section-title { font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.2; color: var(--ink); margin-bottom: 1.2rem; }
+.section-title em { font-style: italic; color: var(--fuchsia); }
+.btn-primary { background: linear-gradient(135deg, var(--fuchsia), var(--violet)); color: #fff; border: none; padding: 0.95rem 2.4rem; border-radius: 50px; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.13em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.25s, transform 0.2s, box-shadow 0.25s; box-shadow: 0 8px 24px rgba(233,30,140,0.35); }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(233,30,140,0.45); }
+
+/* ── ABOUT ── */
+#about { background: #f5eeff; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-visual { position: relative; }
+.about-img-main { width: 100%; aspect-ratio: 4/5; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80&auto=format&fit=crop'); background-size: cover; background-position: center; box-shadow: 0 30px 70px rgba(124,58,237,0.18); }
+.about-img-accent { position: absolute; bottom: -8%; right: -8%; width: 50%; aspect-ratio: 1; border-radius: 50%; background-image: url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80&auto=format&fit=crop'); background-size: cover; background-position: center; border: 6px solid #f5eeff; z-index: 2; box-shadow: 0 12px 40px rgba(124,58,237,0.15); }
+.about-badge { position: absolute; top: 8%; left: -6%; background: linear-gradient(135deg, var(--fuchsia), var(--violet)); border-radius: 20px; padding: 1rem 1.4rem; box-shadow: 0 10px 36px rgba(233,30,140,0.28); z-index: 3; text-align: center; min-width: 110px; }
+.about-badge .big { font-family: var(--font-display); font-size: 2rem; color: #fff; line-height: 1; }
+.about-badge .small { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.82); margin-top: 0.3rem; }
+.about-text p { font-size: 0.95rem; line-height: 1.9; color: var(--ink-mid); font-weight: 300; margin-bottom: 1.2rem; }
+.about-pillars { display: flex; gap: 1.5rem; margin: 2rem 0; flex-wrap: wrap; }
+.pillar { display: flex; align-items: flex-start; gap: 0.8rem; }
+.pillar-icon { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--fuchsia), var(--violet)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+.pillar-title { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); font-weight: 500; }
+.pillar-desc { font-size: 0.82rem; color: var(--ink-light); margin-top: 0.2rem; line-height: 1.5; }
+
+/* ── SERVICES ── */
+#services { background: var(--off-white); text-align: center; }
+.services-header { max-width: 560px; margin: 0 auto 4rem; }
+.services-header .section-eyebrow { justify-content: center; }
+.services-header .section-eyebrow::before { display: none; }
+.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3.5rem; }
+.service-card { background: #fff; border-radius: 24px; padding: 0 0 2rem; text-align: left; cursor: pointer; border: 2px solid transparent; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--fuchsia), var(--violet)); transform: scaleX(0); transition: transform 0.35s; transform-origin: left; }
+.service-card:hover { transform: translateY(-7px); box-shadow: 0 22px 55px rgba(233,30,140,0.12); border-color: rgba(233,30,140,0.14); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-img { width: 100%; aspect-ratio: 4/3; background-size: cover; background-position: center; border-radius: 20px 20px 0 0; margin-bottom: 1.4rem; }
+.service-body { padding: 0 1.8rem; }
+.service-icon { width: 52px; height: 52px; background: #f5eeff; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+.service-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
+.service-desc { font-size: 0.82rem; line-height: 1.7; color: var(--ink-light); font-weight: 300; }
+
+/* ── TESTIMONIALS ── */
+#testimonials { background: linear-gradient(130deg, var(--violet) 0%, var(--fuchsia) 100%); text-align: center; position: relative; overflow: hidden; }
+#testimonials::before { content: '"'; position: absolute; top: -3rem; left: 3%; font-family: var(--font-display); font-size: 22rem; color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none; }
+.testimonials-header { margin-bottom: 3.5rem; }
+.testimonials-header .section-eyebrow { justify-content: center; color: rgba(255,255,255,0.7); }
+.testimonials-header .section-eyebrow::before { display: none; }
+.testimonials-header .section-title { color: #fff; }
+.testimonials-header .section-title em { color: var(--gold); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 0; }
+.testimonial-card { background: rgba(255,255,255,0.12); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.2); border-radius: 24px; padding: 2.5rem; text-align: left; transition: transform 0.3s, box-shadow 0.3s; }
+.testimonial-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+.testimonial-stars { color: var(--gold); font-size: 0.95rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.testimonial-text { font-family: var(--font-display); font-size: 1.1rem; font-style: italic; color: #fff; line-height: 1.75; margin-bottom: 1.5rem; font-weight: 300; }
+.testimonial-author { display: flex; align-items: center; gap: 0.9rem; }
+.author-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; color: #fff; }
+.author-name { font-size: 0.88rem; font-weight: 500; color: #fff; }
+.author-service { font-size: 0.72rem; color: rgba(255,255,255,0.62); letter-spacing: 0.08em; margin-top: 0.1rem; }
+
+/* ── FOOTER ── */
+footer { background: linear-gradient(145deg, #1a0a3c 0%, #2d1060 100%); padding: 60px 5% 30px; text-align: center; }
+.footer-logo { font-family: var(--font-display); font-size: 2.1rem; font-weight: 400; color: #fff; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+.footer-logo span { color: var(--fuchsia); font-style: italic; }
+.footer-tagline { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 2rem; }
+.footer-links { display: flex; justify-content: center; gap: 2.5rem; list-style: none; margin-bottom: 2rem; flex-wrap: wrap; }
+.footer-links a { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.32); text-decoration: none; transition: color 0.25s; }
+.footer-links a:hover { color: var(--fuchsia); }
+.footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.16); letter-spacing: 0.08em; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: none; } }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1200px) { .services-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 900px) {
+  #about { grid-template-columns: 1fr; gap: 3rem; }
+  .about-visual { max-width: 340px; margin: 0 auto; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .services-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: 3rem; }
+  .hero-actions { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Feya<span>Beauty</span>Salon</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="https://wa.me/97142765877?text=Hi%20Feya%20Beauty%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#testimonials" onclick="closeMobileMenu()">Reviews</a>
+  <a href="https://wa.me/97142765877?text=Hi%20Feya%20Beauty%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" onclick="closeMobileMenu()" style="color:var(--rose);">Book on WhatsApp →</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Welcome to Feya Beauty Salon</p>
+
+    <h1 class="hero-title">
+      Enhance Your
+      <span class="line-italic">Natural Beauty</span>
+    </h1>
+
+    <p class="hero-desc">Premium beauty services in the heart of Dubai. Experience luxury, hygiene, and perfection.</p>
+
+    <div class="hero-actions">
+      <a href="https://wa.me/97142765877?text=Hi%20Feya%20Beauty%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" class="btn-hero">Book on WhatsApp</a>
+      <a href="tel:+97142765877" class="btn-hero-ghost">
+        <span class="call-icon">📞</span> Call Now
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,50 C480,90 960,10 1440,50 L1440,80 L0,80 Z" fill="#fdf8ff"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-img-main"></div>
+    <div class="about-img-accent"></div>
+    <div class="about-badge">
+      <div class="big">★ 4.5</div>
+      <div class="small">211 Reviews</div>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="section-title">A haven crafted<br>for <em>your beauty</em></h2>
+    <p>Feya Beauty Salon was born from a simple belief — every woman deserves to feel extraordinary. Nestled in the heart of International City, Dubai, we've grown into a beloved beauty sanctuary where artistry meets care, and every visit leaves you radiant.</p>
+    <p>Our team of skilled professionals is passionate about their craft, continuously trained in the latest techniques to ensure you receive nothing less than perfection.</p>
+    <div class="about-pillars">
+      <div class="pillar"><div class="pillar-icon">🌿</div><div><div class="pillar-title">Clean Beauty</div><div class="pillar-desc">Premium, skin-safe products only</div></div></div>
+      <div class="pillar"><div class="pillar-icon">✦</div><div><div class="pillar-title">Expert Team</div><div class="pillar-desc">Certified, passionate stylists</div></div></div>
+      <div class="pillar"><div class="pillar-icon">♡</div><div><div class="pillar-title">Personal Touch</div><div class="pillar-desc">Tailored to your unique beauty</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="services-header reveal">
+    <p class="section-eyebrow">What We Offer</p>
+    <h2 class="section-title">Our <em>signature</em> services</h2>
+    <p style="font-size:0.9rem;color:var(--light-text);line-height:1.8;font-weight:300;">Each service is thoughtfully curated to enhance your natural beauty and leave you feeling utterly transformed.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&auto=format&fit=crop')"></div>
+      <div class="service-body"><div class="service-icon">💆‍♀️</div><div class="service-name">Facial &amp; Skin</div><p class="service-desc">Rejuvenating facials tailored to your skin type. Glow, hydrate, and restore your complexion with expert precision.</p></div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80&auto=format&fit=crop')"></div>
+      <div class="service-body"><div class="service-icon">💇‍♀️</div><div class="service-name">Hair Styling</div><p class="service-desc">From classic cuts to bold transformations, our colorists and stylists craft looks that speak your language.</p></div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&auto=format&fit=crop')"></div>
+      <div class="service-body"><div class="service-icon">💅</div><div class="service-name">Nails &amp; Art</div><p class="service-desc">Flawless manicures, pedicures, and bespoke nail art for every occasion — from subtle elegance to bold statement.</p></div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80&auto=format&fit=crop')"></div>
+      <div class="service-body"><div class="service-icon">✨</div><div class="service-name">Bridal Package</div><p class="service-desc">Complete bridal beauty experiences designed to make your most special day completely unforgettable.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="testimonials-header reveal">
+    <p class="section-eyebrow">Client Love</p>
+    <h2 class="section-title">Words that <em>warm us</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Feya is the only salon I trust in Dubai. The atmosphere is so calming, the staff are warm and professional — I always leave absolutely stunning."</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#e8a090,#c46060)">A</div><div><div class="author-name">Ayesha Malik</div><div class="author-service">Facial &amp; Bridal Package</div></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I came for a haircut and left with a complete transformation. The colorist truly understood my vision. Worth every dirham and more!"</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#c4a0d0,#9060b0)">Z</div><div><div class="author-name">Zara Hussain</div><div class="author-service">Hair Color &amp; Cut</div></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The nail art for my wedding was beyond imagination. So detailed, so beautiful — I received compliments all day long!"</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#a0c4d0,#6090a0)">S</div><div><div class="author-name">Sara Ahmed</div><div class="author-service">Nail Art Specialist</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Feya<span>Beauty</span>Salon</div>
+  <div class="footer-tagline">Beauty · Elegance · You</div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="https://wa.me/97142765877?text=Hi%20Feya%20Beauty%20Salon%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">Book</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Feya Beauty Salon, International City, Dubai, UAE. All rights reserved.</div>
+</footer>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  const checkScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', checkScroll);
+  checkScroll();
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+  document.addEventListener('click', (e) => { if (!navbar.contains(e.target)) closeMobileMenu(); });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 90);
+      }
+    });
+  }, { threshold: 0.1 }).observe ? (() => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 90); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => obs.observe(el));
+  })() : reveals.forEach(el => el.classList.add('visible'));
+</script>
+</body>
+</html>
